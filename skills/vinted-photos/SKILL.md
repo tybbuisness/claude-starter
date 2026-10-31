@@ -12,28 +12,27 @@ Dossier de travail : `~/second-brain/projets/vinted/<nom-du-produit>/`.
 - Enregistre 1 à 3 photos de référence du bon coloris sous `ref1.jpg`, `ref2.jpg`, `ref3.jpg`.
 - Si la page est inaccessible, demande-moi une photo. N'invente aucune caractéristique.
 
-## 2. Générer 4 photos
-Écris un prompt par photo dans `prompt1.txt` à `prompt4.txt` (UTF-8), puis lance pour chacune :
+## 2. Générer une grille 2x2, découpée en 4 photos
+Un seul appel produit les 4 photos : c'est moins cher et le lieu reste cohérent. Écris le prompt dans `prompt.txt` (UTF-8), puis lance :
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File "$HOME\.claude\skills\vinted-photos\generer.ps1" -Images ref1.jpg,ref2.jpg -PromptFile prompt1.txt -Out photo1.png
+powershell -NoProfile -ExecutionPolicy Bypass -File "$HOME\.claude\skills\vinted-photos\generer.ps1" -Images ref1.jpg,ref2.jpg -PromptFile prompt.txt
 ```
 
-| Photo | Scène |
-|---|---|
-| 1 | Produit entier, bien visible |
-| 2 | Produit porté ou utilisé |
-| 3 | Gros plan sur la matière |
-| 4 | Autre angle, même lieu |
+Le script crée `grille.png`, puis `photo1.jpg` à `photo4.jpg`. Modèle obligatoire : `gpt-image-2.5-sunburst`, en 2160x2880. Ce sont ses réglages par défaut : ne les change pas.
 
-Modèle obligatoire : `gpt-image-2.5-sunburst`, format 3:4 en 2K. Le script les applique par défaut : ne les change pas. Génère une photo à la fois.
-
-Chaque prompt commence par « amateur, super realistic photo taken with a phone (iPhone) », puis demande : exactement le même produit que la référence (forme, couleur, motifs, nombre de pièces), lumière de maison, cadrage imparfait, intérieur ordinaire, aucun texte ni logo ajouté. Une personne visible est d'origine européenne, écrit dans le prompt.
+Le prompt commence par « amateur, super realistic photo taken with a phone (iPhone). A vertical 3:4 image containing a 2x2 grid of 4 separate photos », puis demande :
+- exactement le même produit que la référence (forme, couleur, motifs, nombre de pièces) ;
+- 4 cases de même taille qui coupent l'image exactement en deux dans les deux sens, sans bordure, sans espace, sans texte ;
+- en haut à gauche le produit entier, en haut à droite le produit porté ou utilisé, en bas à gauche un gros plan sur la matière, en bas à droite un autre angle ;
+- dans chaque case, le sujet garde une marge visible avec les bords ;
+- lumière de maison, cadrage imparfait, intérieur ordinaire, aucun logo ajouté ;
+- toute personne visible est d'origine européenne.
 
 La référence est toujours la photo du fournisseur, jamais une image déjà générée : sinon le produit se déforme.
 
-## 3. Contrôler chaque image
-Ouvre chaque image dès sa sortie et compare-la à la référence. Si le produit diffère, corrige le prompt et relance.
+## 3. Contrôler chaque photo découpée
+Ouvre `photo1.jpg` à `photo4.jpg`, pas seulement la grille. Compare chacune à la référence et vérifie qu'aucune n'est coupée au mauvais endroit. Si une photo est mauvaise, corrige le prompt et relance.
 
 ## 4. Écrire la fiche
 - Titre : type de produit, coloris, taille, matière.

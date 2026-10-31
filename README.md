@@ -12,6 +12,8 @@ irm https://raw.githubusercontent.com/tybbuisness/claude-starter/main/install.ps
 
 ## Ce qui est installé
 
-- `CLAUDE.md` dans `~/.claude` (l'ancien fichier est sauvegardé)
+- `CLAUDE.md` dans `~/.claude` (l'ancien fichier est sauvegardé), avec la mémoire automatique
+- un second brain dans `~/second-brain`, jamais écrasé
+- le skill `vinted-photos`, avec sa clé ArgoLink saisie en masqué
 - les plugins `superpowers`, `frontend-design` et `skill-creator`
 - Context7, pour consulter la documentation à jour des outils

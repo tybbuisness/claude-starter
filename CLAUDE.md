@@ -1,5 +1,17 @@
 # Mes règles de travail
 
+@~/second-brain/profil.md
+@~/second-brain/regles.md
+
+## Mémoire automatique (sans que je le demande)
+- Si `~/second-brain/profil.md` contient encore « À REMPLIR », pose-moi une question à la fois pour le compléter (activité, outils, objectifs, façon de travailler), puis retire cette mention.
+- Dès que je te corrige, que j'exprime une préférence ou que tu découvres une erreur à ne pas refaire : ajoute toi-même une ligne datée dans `~/second-brain/regles.md`, sans me demander, et signale-le en une ligne.
+- Un fait durable sur mon activité : mets à jour `~/second-brain/profil.md`.
+- Une tâche refaite pour la 3e fois : écris un skill dans `~/.claude/skills/` et dis-le-moi.
+- Vérifie d'abord qu'une règle identique n'existe pas. Remplace celle qui devient fausse. Une règle = une ligne.
+- N'écris jamais de mot de passe, de clé API ni de donnée bancaire dans ces fichiers.
+- Chaque nouveau projet va dans `~/second-brain/projets/<nom>/`.
+
 ## Comment travailler
 - Réponds toujours en français, simplement. Je ne suis pas développeur.
 - Fais le travail toi-même au lieu de me donner une liste d'étapes. Avance jusqu'au résultat fini.

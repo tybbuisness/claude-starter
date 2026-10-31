@@ -2,8 +2,9 @@ param(
   [Parameter(Mandatory)][string[]]$Images,
   [Parameter(Mandatory)][string]$PromptFile,
   [Parameter(Mandatory)][string]$Out,
-  [string]$Size = "1024x1536",
-  [string]$Model = "gpt-image-2"
+  [string]$AspectRatio = "3:4",
+  [string]$Resolution = "2K",
+  [string]$Model = "gpt-image-2.5-sunburst"
 )
 $key = $env:ARGOLINK_API_KEY
 if (-not $key) { $key = [Environment]::GetEnvironmentVariable("ARGOLINK_API_KEY", "User") }
@@ -13,7 +14,7 @@ $tmp = [IO.Path]::GetTempFileName()
 $curlArgs = @("--max-time", "600", "-sS", "-o", $tmp, "-w", "%{http_code}",
   "https://argolink.io/v1/images/edits",
   "-H", "Authorization: Bearer $key",
-  "-F", "model=$Model", "-F", "size=$Size", "-F", "prompt=<$PromptFile")
+  "-F", "model=$Model", "-F", "aspect_ratio=$AspectRatio", "-F", "resolution=$Resolution", "-F", "prompt=<$PromptFile")
 foreach ($i in $Images) { $curlArgs += @("-F", "image[]=@$i") }
 
 $code = & curl.exe @curlArgs

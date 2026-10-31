@@ -26,7 +26,11 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "$HOME\.claude\skills\vinted
 | 3 | Gros plan sur la matière |
 | 4 | Autre angle, même lieu |
 
-Chaque prompt demande : exactement le même produit que la référence (forme, couleur, motifs, nombre de pièces), photo prise au téléphone, lumière naturelle, intérieur ordinaire, aucun texte ni logo ajouté. Une personne visible est d'origine européenne.
+Modèle obligatoire : `gpt-image-2.5-sunburst`, format 3:4 en 2K. Le script les applique par défaut : ne les change pas. Génère une photo à la fois.
+
+Chaque prompt commence par « amateur, super realistic photo taken with a phone (iPhone) », puis demande : exactement le même produit que la référence (forme, couleur, motifs, nombre de pièces), lumière de maison, cadrage imparfait, intérieur ordinaire, aucun texte ni logo ajouté. Une personne visible est d'origine européenne, écrit dans le prompt.
+
+La référence est toujours la photo du fournisseur, jamais une image déjà générée : sinon le produit se déforme.
 
 ## 3. Contrôler chaque image
 Ouvre chaque image dès sa sortie et compare-la à la référence. Si le produit diffère, corrige le prompt et relance.
@@ -40,3 +44,4 @@ Ouvre chaque image dès sa sortie et compare-la à la référence. Si le produit
 ## Erreurs
 - Clé absente ou refusée : demande-moi de vérifier ma clé ArgoLink sans jamais me la faire écrire dans le chat.
 - Solde insuffisant : dis-moi de recharger sur argolink.io.
+- Refus ou échec isolé : relance la même photo une fois, sans changer de modèle.
